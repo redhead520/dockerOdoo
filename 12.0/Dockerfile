@@ -17,7 +17,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install some deps, lessc and less-plugin-clean-css
 RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata autoconf automake libtool perl ttf-wqy-zenhei ttf-wqy-microhei curl && \
-    apt-get -y install npm node-less && npm install -G less\
+    apt-get -y install npm node-less && npm install -G less && \
     apt-get -y autoremove && apt-get clean all 
 
 #Install wkhtmltopdf
@@ -35,7 +35,7 @@ RUN apt-get install -y libpq-dev libxml2-dev libxslt1-dev libffi-dev libsasl2-de
 # /etc/postgresql/10/main/pg_hba.conf    (trust)
 # \password;  postgres
 # CREATE ROLE odoo WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT REPLICATION CONNECTION LIMIT -1 PASSWORD 'odoo';
-RUN apt-get install postgresql && \
+RUN apt-get install postgresql && apt-get -y autoremove && apt-get clean all && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/127.0.0.1/0.0.0.0/g' && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/md5/trust/g' && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/peer/trust/g' && \
