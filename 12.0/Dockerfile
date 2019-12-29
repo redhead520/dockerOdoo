@@ -35,7 +35,7 @@ RUN apt-get install -y libpq-dev libxml2-dev libxslt1-dev libffi-dev libsasl2-de
 # /etc/postgresql/10/main/pg_hba.conf    (trust)
 # \password;  postgres
 # CREATE ROLE odoo WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT REPLICATION CONNECTION LIMIT -1 PASSWORD 'odoo';
-RUN apt-get install postgresql && apt-get -y autoremove && apt-get clean all && \
+RUN apt-get install -y postgresql && apt-get -y autoremove && apt-get clean all && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/127.0.0.1/0.0.0.0/g' && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/md5/trust/g' && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/peer/trust/g' && \
