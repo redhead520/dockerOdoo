@@ -4,11 +4,11 @@ VOLUME ["/odoo", "/odoo_data", "/odoo_product_addons"]
 COPY requirements.txt /opt/
 COPY wkhtmltox_0.12.5-1.bionic_amd64.deb /opt/
 COPY sources.list /etc/apt/
-COPY pip.conf ~/.pip/
-COPY odoo.conf ~/
-COPY start.sh ~/
-COPY stop.sh ~/
-COPY restart.sh ~/
+COPY pip.conf /root/.pip/
+COPY odoo.conf /opt/
+COPY start.sh /opt/
+COPY stop.sh /opt/
+COPY restart.sh /opt/
 
 # start
 # Prevent tzdata apt-get installation from asking for input.
@@ -36,16 +36,16 @@ RUN apt-get install -y libpq-dev libxml2-dev libxslt1-dev libffi-dev libsasl2-de
 # \password;  postgres
 # CREATE ROLE odoo WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT REPLICATION CONNECTION LIMIT -1 PASSWORD 'odoo';
 RUN apt-get install -y postgresql && apt-get -y autoremove && apt-get clean all && \
-find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/127.0.0.1/0.0.0.0/g' && \
+find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/127.0.0.1\/32/0.0.0.0\/0/g' && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/md5/trust/g' && \
 find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/peer/trust/g' && \
-find /etc/postgresql -name postgresql.conf | xargs sed -i "s/listen_addresses = 'localhost'/listen_addresses = '*'/g" && \
+find /etc/postgresql -name postgresql.conf | xargs sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" && \
 /etc/init.d/postgresql restart && \
 psql -U postgres -c "CREATE ROLE odoo WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT REPLICATION CONNECTION LIMIT -1 PASSWORD 'odoo'"
 
 EXPOSE 5432
 EXPOSE 8069
-WORKDIR ~
+WORKDIR /opt
 
 # Set OS timezone to China
 # RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
