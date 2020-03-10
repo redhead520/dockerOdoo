@@ -1,2 +1,3 @@
 echo 'start odoo server'
-python /odoo/odoo-bin -c /~/odoo.conf &
+/etc/init.d/postgresql restart
+python /odoo/odoo-bin -c /opt/odoo.conf &
