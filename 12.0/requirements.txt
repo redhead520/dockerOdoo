@@ -47,3 +47,12 @@ aliyun-python-sdk-dysmsapi==1.0.0
 simplejson==3.16.0
 phonenumbers==8.10.13
 redis==3.3.8
+
+pycrypto
+xmltodict==0.11.0
+itsdangerous==0.24
+kdniao==0.1.2
+wechatpy
+sqlalchemy==1.2.5
+kombu==4.1.0
+celery==4.1.0

@@ -62,4 +62,6 @@ docker rm odoo12
 ```
 删除所有仓库名为 odoo12 的镜像
 docker image rm $(docker image ls -q odoo12)
+或者
+docker rmi odoo12
 ```

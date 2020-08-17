@@ -17,7 +17,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install some deps, lessc and less-plugin-clean-css
 RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata autoconf automake libtool perl ttf-wqy-zenhei ttf-wqy-microhei curl && \
-    apt-get -y install npm node-less && npm install -G less && \
+    apt-get -y install npm node-less && npm install -g less && \
     apt-get -y autoremove && apt-get clean all 
 
 #Install wkhtmltopdf
