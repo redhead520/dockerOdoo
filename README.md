@@ -14,13 +14,22 @@
 
 #### 启动镜像
 ```
-docker run -it \
+docker run -it --name shop_mall \
 --restart=always --restart=on-failure:1 \
--p 8000:8069 -p 8002:8072 -p 54320:5432\
---mount type=bind,source=/opt/odoo,target=/odoo,readonly \
---mount type=bind,source=/opt/odoodata,target=/odoo_data \
--v /opt/product_addons:/odoo_product_addons \
-odoo12:v1 /bin/bash 
+-p 8066:8069 -p 8062:8072 \
+--mount type=bind,source=/home/odoodev/odoo12,target=/odoo,readonly \
+--mount type=bind,source=/home/odoodev/oe_shop/data,target=/odoo_data \
+-v /home/odoodev/oe_shop/odoo_shop_mall:/odoo_product_addons \
+ubuntu:16.04 /bin/bash 
+```
+```
+docker run -it --name shop_mall \
+--restart=always --restart=on-failure:1 \
+-p 8066:8069 -p 8062:8072 \
+-v /home/odoodev/odoo12:/odoo \
+-v /home/odoodev/oe_shop/data:/odoo_data \
+-v /home/odoodev/oe_shop/odoo_shop_mall:/odoo_product_addons \
+ubuntu:16.04 /bin/bash 
 ```
 
 ```
