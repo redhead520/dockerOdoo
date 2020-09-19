@@ -1,8 +1,8 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 ENV LANG C.UTF-8
 VOLUME ["/odoo", "/odoo_data", "/odoo_product_addons"]
 COPY requirements.txt /opt/
-COPY wkhtmltox_0.12.5-1.bionic_amd64.deb /opt/
+COPY wkhtmltox_0.12.5-1.focal_amd64.deb /opt/
 COPY pip.conf /root/.pip/
 COPY odoo.conf /opt/
 COPY start.sh /opt/
@@ -15,14 +15,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install some deps, lessc and less-plugin-clean-css
 # xenial / bionic / focal 分别对应ubuntu的16.04,18.04,20.04
-RUN find /etc/apt -name sources.list | xargs sed -i 's/bionic/xenial/g' && \
+RUN find /etc/apt -name sources.list | xargs sed -i 's/bionic/focal/g' && \
     apt-get update && apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata autoconf automake libtool perl ttf-wqy-zenhei ttf-wqy-microhei curl && \
     apt-get -y install npm node-less && npm install -g less && \
     apt-get -y autoremove && apt-get clean all 
 
 #Install wkhtmltopdf
-RUN dpkg --force-depends -i /opt/wkhtmltox_0.12.5-1.bionic_amd64.deb  && apt-get update && apt-get -y install -f --no-install-recommends
+RUN dpkg --force-depends -i /opt/wkhtmltox_0.12.5-1.focal_amd64.deb  && apt-get update && apt-get -y install -f --no-install-recommends
 # COPY ./simsun.ttc /usr/share/fonts
 
 # 默认Python2调整为Python3 并且 安装odoo 依赖环境
@@ -38,7 +38,7 @@ RUN apt-get install -y libpq-dev libxml2-dev libxslt1-dev libffi-dev libsasl2-de
 # /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start
 # \password;  postgres
 
-RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
     curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && apt-get update && \
     apt-get install -y postgresql && apt-get -y autoremove && apt-get clean all && \
     find /etc/postgresql -name pg_hba.conf | xargs sed -i 's/127.0.0.1\/32/0.0.0.0\/0/g' && \
