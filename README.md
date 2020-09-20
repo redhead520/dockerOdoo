@@ -35,7 +35,7 @@ ubuntu:16.04 /bin/bash
 ```
 docker run -it --name odoo12 \
 --restart=always --restart=on-failure:1 \
--p 8000:8069 -p 8002:8072 -p 54325:5432 \
+-p 8000:8069 -p 8002:8072 \
 --mount type=bind,source=/Users/afa/code/odoo/odoo12,target=/odoo,readonly \
 --mount type=bind,source=/Users/afa/code/odoo/odoo12_data_docker,target=/odoo_data \
 -v /Users/afa/code/odoo/gzlsd_addons:/odoo_product_addons \

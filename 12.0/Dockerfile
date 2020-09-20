@@ -8,17 +8,17 @@ COPY odoo.conf /opt/
 COPY start.sh /opt/
 COPY stop.sh /opt/
 COPY restart.sh /opt/
-COPY sources.list /etc/apt/
+COPY sources_focal.list /etc/apt/sources.list
 
 # Prevent tzdata apt-get installation from asking for input.
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install some deps, lessc and less-plugin-clean-css
+# find /etc/apt -name sources.list | xargs sed -i 's/bionic/focal/g' && \
 # xenial / bionic / focal 分别对应ubuntu的16.04,18.04,20.04
-RUN find /etc/apt -name sources.list | xargs sed -i 's/bionic/focal/g' && \
-    apt-get update && apt-get -y upgrade && \
+RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata autoconf automake libtool perl ttf-wqy-zenhei ttf-wqy-microhei curl && \
-    apt-get -y install npm node-less && npm install -g less && \
+    apt-get -y install npm && npm install -g less && \
     apt-get -y autoremove && apt-get clean all 
 
 #Install wkhtmltopdf

@@ -1,0 +1,26 @@
+deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal main
+deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal main
+
+deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates main
+deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates main
+
+deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal universe
+deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal universe
+deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates universe
+deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates universe
+
+# deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal multiverse
+# deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal multiverse
+# deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates multiverse
+# deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates multiverse
+# deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-backports main restricted universe multiverse
+# deb http://archive.canonical.com/ubuntu focal partner
+# deb-src http://archive.canonical.com/ubuntu focal partner
+
+deb http://mirrors.cloud.aliyuncs.com/ubuntu focal-security main
+deb-src http://mirrors.cloud.aliyuncs.com/ubuntu focal-security main
+deb http://mirrors.cloud.aliyuncs.com/ubuntu focal-security universe
+deb-src http://mirrors.cloud.aliyuncs.com/ubuntu focal-security universe
+# deb http://mirrors.cloud.aliyuncs.com/ubuntu focal-security multiverse
+# deb-src http://mirrors.cloud.aliyuncs.com/ubuntu focal-security multiverse
